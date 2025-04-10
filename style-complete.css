@@ -440,3 +440,45 @@ footer {
     display: flex;
   }
 }
+/* Default: hide mobile nav */
+.mobile-nav {
+  display: none;
+}
+
+/* Hamburger hidden on desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* hide desktop menu on mobile */
+  }
+
+  .hamburger {
+    display: flex; /* show hamburger menu */
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 2000;
+  }
+
+  .mobile-nav {
+    display: none; /* start hidden, toggle with JS */
+    position: absolute;
+    top: 100px;
+    right: 5%;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 1500;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
