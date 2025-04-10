@@ -300,28 +300,7 @@ footer {
   position: relative;
   z-index: 1;
 }
-@media (max-width: 768px) {
-  .hero-content .headline {
-    font-size: 2.2rem;
-    line-height: 1.25;
-    padding: 0 16px;
-    word-break: break-word;
-    max-width: 90vw;
-  }
 
-  .hero-buttons-inline {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .btn.primary,
-  .btn.secondary {
-    width: 90%;
-    max-width: 280px;
-    font-size: 1rem;
-  }
-}
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
