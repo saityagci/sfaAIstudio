@@ -482,3 +482,49 @@ footer {
     text-decoration: none;
   }
 }
+/* HIDE mobile nav on desktop */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1001;
+}
+.mobile-nav a {
+  color: white;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Hamburger styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Show hamburger and mobile nav on small screens */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+}
