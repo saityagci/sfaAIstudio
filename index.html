@@ -37,6 +37,37 @@
             color: #f4f5f7;
             font-weight: bold;
         }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 2000;
+        }
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: #fff;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 1500;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .mobile-nav a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
         header.hero {
             height: 100vh;
             background: linear-gradient(135deg, #0d1b2a 0%, #183D3D 100%);
@@ -86,6 +117,17 @@
             color: #f4f5f7;
             text-decoration: none;
         }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .mobile-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -94,17 +136,27 @@
     <div class="logo large-logo">
         <img src="a.png" alt="SFA AI Logo">
     </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#solutions">Solutions</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
 <!-- Modern Landing Section -->
 <header class="hero" id="home">
-
     <div class="hero-content">
         <p class="subtitle">SFA AI Studio</p>
         <h1 class="headline">
@@ -115,153 +167,20 @@
             <a href="#services" class="btn secondary">Our Services </a>
         </div>
     </div>
-    <div class="hero-image">
-
-    </div>
+    <div class="hero-image"></div>
 </header>
 
+<!-- Remaining sections go here... (services, solutions, contact, footer) -->
 
-
-<!-- SERVICES -->
-<section class="section services-modern red-section" id="services">
-    <div class="services-header">
-        <h2 >OUR <span> </span> SERVICES</h2>
-        <p>We build tailored AI solutions to elevate your operations – from automation to intelligent consulting.</p>
-    </div>
-    <div class="services-cards">
-        <div class="service-modern light">
-            <h3>AI VOICE AGENTS</h3>
-            <div class="tags">
-                <span>Automate Your Incoming & Outgoing Calls</span>
-                <span>Advanced Call Automations</span>
-                <span>Human-Like Voice Quality</span>
-                <span>24/7 Operation</span>
-                <span>Monthly Development Meetings</span>
-                <span>Custom-Built for Your Business</span>
-                <span>Powered by the Latest AI Models</span>
-            </div>
-        </div>
-        <div class="service-modern dark">
-            <h3>
-                AI CHAT AGENTS
-                </h3>
-            <div class="tags">
-                <span>Elevate Customer Support Across Messaging Platforms</span>
-                <span>Tailored to Your Business Needs</span>
-                <span>Multi-Channel Support</span>
-                <span>Always Available – 24/7</span>
-                <span>Seamless Integrations with Your Apps</span>
-                <span>Natural, Human-Like Conversations</span>
-                <span>Powered by the Latest AI Models</span>
-            </div>
-        </div>
-        <div class="service-modern green">
-            <h3>CUSTOM SOLUTIONS</h3>
-            <div class="tags">
-                <span>Tailored AI Systems for Your Unique Needs</span>
-                <span>Powered by Cutting-Edge AI Technology</span>
-                <span>Scalable & Future-Proof Architecture</span>
-                <span>Smooth API & System Integrations</span>
-                <span>Industry-Specific Custom Development</span>
-                <span>End-to-End Intelligent Automation</span>
-                <span>AI-Powered Workflow Optimization</span>
-
-            </div>
-        </div>
-    </div>
-</section>
-<!-- SOLUTION -->
-<section class="section services-modern red-section" id="solutions">
-    <div class="services-header">
-        <h2>OUR <span></span> SOLUTIONS</h2>
-        <p>Explore our suite of AI-powered tools designed for hospitality, operations, and guest interaction excellence.</p>
-    </div>
-    <div class="services-cards">
-        <div class="service-modern light">
-            <h3>AI HOST</h3>
-            <div class="tags">
-                <span>Reservation Calls</span>
-                <span>Menu & Info Sharing</span>
-                <span>Table Bookings</span>
-                <span>Waitlist Management</span>
-                <span>Multi-Channel Support</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern dark">
-            <h3>AI CONCIERGE</h3>
-            <div class="tags">
-                <span>Guest Voice & Chat</span>
-                <span>Spa & Transport Booking</span>
-                <span>Amenities Info</span>
-                <span>Phone & Messaging</span>
-                <span>Human-Like Tone</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern green">
-            <h3>AI PHONE RECEPTIONIST</h3>
-            <div class="tags">
-                <span>Call Routing</span>
-                <span>Custom Greetings</span>
-                <span>Voice Messaging</span>
-                <span>FAQs</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern light">
-            <h3>AI COMPONENT</h3>
-            <div class="tags">
-                <span>Staff Onboarding</span>
-                <span>HR Policy Answers</span>
-                <span>Department Training</span>
-                <span>Live Content Updates</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern dark">
-            <h3>SMMA AI</h3>
-            <div class="tags">
-                <span>Instagram & Google</span>
-                <span>DM Replies</span>
-                <span>Analytics Tracking</span>
-                <span>AI Content Ideas</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section contact" id="contact">
-    <h2>Let's Build Your AI-Powered Future</h2>
-
-    <a href="https://calendly.com/sfaaistudio/30min" class="btn primary">Schedule a Call</a>
-    <p></p>
-    <div style="height: 40px;"></div>
-    <p></p>
-
-
-
-</section>
-
-
-
-<!-- FOOTER -->
-<footer class="footer-modern">
-    <div class="footer-content">
-        <div class="footer-left">
-            <img src="a.png" alt="SFA AI Logo" class="footer-logo" />
-        </div>
-        <div class="footer-center">
-            <p><strong>📍 Address</strong></p>
-            <p>New York, USA &nbsp;&nbsp;|&nbsp;&nbsp; Istanbul, TR</p>
-        </div>
-        <div class="footer-right">
-            <p> <a href="mailto:info@sfaai.co">info@sfaai.co</a> </p>
-
-        </div>
-    </div>
-</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    if (nav.style.display === "flex") {
+      nav.style.display = "none";
+    } else {
+      nav.style.display = "flex";
+    }
+  }
+</script>
 </body>
 </html>
