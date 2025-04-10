@@ -322,3 +322,48 @@ footer {
     font-size: 1rem;
   }
 }
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    z-index: 1001;
+    border-radius: 8px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .large-logo img {
+    height: 50px;
+  }
+
+  .hero-content .headline {
+    font-size: 2.2rem;
+    line-height: 1.25;
+    padding: 0 16px;
+    word-break: break-word;
+    max-width: 90vw;
+  }
+
+  .hero-buttons-inline {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btn.primary,
+  .btn.secondary {
+    width: 90%;
+    max-width: 280px;
+    font-size: 1rem;
+  }
+}
