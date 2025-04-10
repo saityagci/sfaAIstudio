@@ -94,12 +94,29 @@
     <div class="logo large-logo">
         <img src="a.png" alt="SFA AI Logo">
     </div>
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+    <!-- Hamburger icon for mobile -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Desktop nav links -->
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <!-- Mobile nav links -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#contact">Contact</a>
+  </div>
+    
 </nav>
 
 <!-- Modern Landing Section -->
@@ -263,5 +280,11 @@
         </div>
     </div>
 </footer>
+    <script>
+  function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+  }
+</script>
 </body>
 </html>
