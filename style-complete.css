@@ -578,21 +578,3 @@ footer {
     display: flex;
   }
 }
-
-/* MOBILE VIEW */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
-  .hero-content .headline {
-    font-size: 2.2rem;
-    line-height: 1.3;
-    padding: 0 16px;
-    word-break: break-word;
-    max-width: 90vw;
-  }
-}
-
