@@ -599,15 +599,3 @@ footer {
 .mobile-nav.show {
   display: flex;
 }
-.mobile-hero-logo {
-  display: none;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-  .mobile-hero-logo {
-    display: block;
-    margin: 0 auto 12px;
-  }
-}
