@@ -578,4 +578,20 @@ footer {
     display: flex;
   }
 }
+@media (max-width: 768px) {
+  .nav-links {
+    display: none !important; /* This ensures it's hidden on mobile */
+  }
 
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+}
