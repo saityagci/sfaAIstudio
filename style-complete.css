@@ -578,8 +578,4 @@ footer {
     display: flex;
   }
 }
-@media (max-width: 768px) {
-  .nav-links {
-    display: none !important;
-  }
-}
+
