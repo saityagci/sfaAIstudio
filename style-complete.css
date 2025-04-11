@@ -131,8 +131,4 @@ a {
     max-width: 90vw;
   }
 }
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-}
+
