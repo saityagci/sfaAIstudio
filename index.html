@@ -120,6 +120,15 @@
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
 </nav>
+    <div class="mobile-overlay" id="mobileOverlay">
+  <div class="overlay-menu">
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#solutions" onclick="toggleMenu()">Solutions</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  </div>
+</div>
 
 <!-- Modern Landing Section -->
 <header class="hero" id="home">
@@ -288,6 +297,12 @@
   function toggleMenu() {
     const mobileNav = document.getElementById("mobileNav");
     mobileNav.classList.toggle("show");
+  }
+</script>
+    <script>
+  function toggleMenu() {
+    const overlay = document.getElementById("mobileOverlay");
+    overlay.classList.toggle("show");
   }
 </script>
 
