@@ -12,6 +12,14 @@
             background-color: #f4f5f7;
             color: #292929;
         }
+        .footer-link {
+            color: #A5F3FC;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
         nav.navbar {
             display: flex;
             justify-content: space-between;
@@ -89,6 +97,7 @@
     </style>
 </head>
 <body>
+
 <!-- Navigation Bar -->
 <nav class="navbar">
   <div class="logo large-logo">
@@ -139,16 +148,73 @@
             <span style="color: #2585f8;">Empower</span> Your Systems<br />with Cutting-Edge AI Solutions
         </h1>
         <div class="hero-buttons-inline">
-            <a href="https://calendly.com/sfaaistudio/30min" class="btn primary">Let's Talk</a>
+            <a href="#" onclick="toggleModal(true)"  class="btn primary">Let's Talk</a>
             <a href="#services" class="btn secondary">Our Services </a>
         </div>
     </div>
     <div class="hero-image">
 
     </div>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 </header>
+<!-- Modal -->
+<div id="demoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <!-- Outer wrapper (centered modal box) with  -->
+    <div class="rounded-xl shadow-lg max-w-xl w-full" style="background-color: #183D3DFF;">
+        <div class="p-8 rounded-xl text-white">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Schedule Your Demo</h2>
+                <button onclick="toggleModal(false)" class="text-white text-2xl hover:text-gray-300">&times;</button>
+            </div>
 
+            <form id="demoForm" class="space-y-6">
 
+                <div>
+                    <label class="block text-white font-semibold mb-1">First Name*</label>
+                    <input type="text" name="firstName" placeholder="First name"
+                           class="w-full p-3 rounded-full text-black placeholder-gray-400 bg-white" required>
+                </div>
+
+                <div>
+                    <label class="block text-white font-semibold mb-1">Last Name*</label>
+                    <input type="text" name="lastName" placeholder="Last name"
+                           class="w-full p-3 rounded-full text-black placeholder-gray-400 bg-white" required>
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-white font-semibold mb-1">Email*</label>
+                        <input type="email" name="email" placeholder="email@domain.com"
+                               class="w-full p-3 rounded-full text-black placeholder-gray-400 bg-white" required>
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-white font-semibold mb-1">Phone Number*</label>
+                        <input type="tel" name="phone" placeholder="Phone number"
+                               class="w-full p-3 rounded-full text-black placeholder-gray-400 bg-white" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-white font-semibold mb-1">Tell us about your needs</label>
+                    <textarea name="message" placeholder="How can we help?" rows="4"
+                              class="w-full p-3 rounded-xl text-black placeholder-gray-400 bg-white resize-none" required></textarea>
+                </div>
+
+                <div class="flex items-start space-x-2 text-sm text-white">
+                    <input type="checkbox" required class="mt-1">
+                    <p>I consent to receive TableTalk AI information and promotional material via phone, email, and SMS.</p>
+                </div>
+
+                <button type="submit"
+                        style="color: #183D3D;"
+                        class="w-full bg-white py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- SERVICES -->
 <section class="section services-modern red-section" id="services">
@@ -278,12 +344,56 @@
         </div>
     </div>
 </section>
+<!-- INTEGRATION -->
+<section class="gradient-bg py-20 text-center px-6">
+    <h2 class="text-3xl font-bold mb-4" style="color: #000305">INTEGRATE SEAMLESSLY WITH YOUR FAVORITE TOOLS</h2>
+    <p class="text-gray-700 max-w-2xl mx-auto mb-10" style="color: #000305">
+        TableTalk works beautifully with your PMS, CRM, POS, and communication platforms — no need to change your existing stack.
+    </p>
+
+    <div class="overflow-hidden relative">
+        <div class="flex space-x-8 w-max px-4 animate-marquee">
+            <!-- Logo set duplicated twice for seamless infinite scroll -->
+            <template id="logo-row">
+                <img src="website_logos/apaleo.png" alt="Apaleo" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/apollo.svg" alt="Apollo" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/cloudbed.svg" alt="CloudBed" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/clover.svg" alt="Clover" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/elektraweb.jpeg" alt="ElektraWeb" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/gmail.svg" alt="Gmail" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/google.svg" alt="Google" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/hubspot.png" alt="Hubspot" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/instagram.svg" alt="Instagram" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/mevs.jpeg" alt="Mevs" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/microsoft.svg" alt="Microsoft" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/monday.svg" alt="Monday" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/opentable.png" alt="OpenTable" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/oracle.png" alt="Oracle" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/resy.png" alt="Resy" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/rezervem.jpeg" alt="Reservem" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/roomracoon.jpeg" alt="RoomRacoon" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/sevenrooms.jpeg" alt="SevenRooms" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/simpra.png" alt="Simpra" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/square.svg" alt="Square" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/stripe.jpeg" alt="Stripe" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/telegram.svg" alt="Telegram" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/toast.svg" alt="Toast" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/twilio.svg" alt="Twilio" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+                <img src="website_logos/whatsapp.png" alt="Whatsapp" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+            </template>
+            <div class="flex space-x-8" id="marquee-track"></div>
+            <div class="flex space-x-8" id="marquee-track-clone"></div>
+        </div>
+    </div>
+</section>
 
 <!-- CONTACT -->
 <section class="section contact" id="contact">
     <h2>Let's Build Your AI-Powered Future</h2>
 
-    <a href="https://calendly.com/sfaaistudio/30min" class="btn primary">Schedule a Call</a>
+    <button onclick="toggleModal(true)" style="cursor: pointer; border: 2px solid #2585f8; color: white; background: #2585f8;" class="px-4 py-2 rounded-full font-semibold hover:bg-[#F97316] hover:text-white transition">
+        Schedule Your Demo
+    </button>
     <p></p>
     <div style="height: 40px;"></div>
     <p></p>
@@ -291,8 +401,6 @@
 
 
 </section>
-
-
 
 <!-- FOOTER -->
 <footer class="footer-modern">
@@ -303,6 +411,9 @@
         <div class="footer-center">
             <p><strong>📍 Address</strong></p>
             <p>New York, USA &nbsp;&nbsp;|&nbsp;&nbsp; Istanbul, TR</p>
+            <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
+            <a href="/terms.html" class="footer-link">Terms of Service</a>
+            <p>&copy; 2025 SFA AI Studio. All rights reserved</p>
         </div>
         <div class="footer-right">
             <p> <a href="mailto:info@sfaai.co">info@sfaai.co</a> </p>
@@ -324,6 +435,53 @@
     overlay.classList.toggle("show");
   }
 </script>
+<!-- Slide logos Script-->
+<style>
+    @keyframes slide {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .animate-slide {
+        animation: slide 25s linear infinite;
+    }
+</style>
+<style>
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+        display: flex;
+        white-space: nowrap;
+        align-items: center;
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    const logoRowTemplate = document.getElementById('logo-row').content;
+    const marqueeTrack = document.getElementById('marquee-track');
+    const marqueeTrackClone = document.getElementById('marquee-track-clone');
+
+    // Duplicate the logos into both tracks for seamless scroll
+    marqueeTrack.appendChild(document.importNode(logoRowTemplate, true));
+    marqueeTrackClone.appendChild(document.importNode(logoRowTemplate, true));
+</script>
+<!-- Connect from with button-->
+<script>
+    function toggleModal(show) {
+        const modal = document.getElementById('demoModal');
+        modal.classList.toggle('hidden', !show);
+        modal.classList.toggle('flex', show);
+    }
+</script>
+
 
 </body>
 </html>
