@@ -1,329 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SFA AI Studio</title>
-    <link rel="stylesheet" href="style-complete.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f5f7;
-            color: #292929;
-        }
-        nav.navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: transparent;
-            position: absolute;
-            width: 100%;
-            height: 100px;
-            z-index: 1000;
-        }
-        .logo img {
-            height: 80px;
-            width: 115px;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 24px;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: #f4f5f7;
-            font-weight: bold;
-        }
-        header.hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #0d1b2a 0%, #183D3D 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .hero-content {
-            max-width: 900px;
-        }
-        .hero-content .subtitle {
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #a5f3fc;
-        }
-        .hero-content .headline {
-            font-size: 3.5rem;
-            font-weight: bold;
-            line-height: 1.2;
-            margin: 20px 0;
-        }
-        .hero-buttons-inline {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .btn.primary {
-            background-color: #2585f8;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .btn.secondary {
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: bold;
-            background: transparent;
-            border: 2px solid #f4f5f7;
-            color: #f4f5f7;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TableTalk AI – Your Restaurant’s Voice</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .wallpaper-body{background:
+            linear-gradient(to bottom, rgba(248,241,231,0.01), rgba(248,241,231,0.6)),
+            url('wallpaper1.png') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #f8f1e7;
+      background-attachment: scroll;
+      }
+
+
+    @media (min-width: 768px) {
+      .wallpaper-body {
+        background-attachment: fixed;
+      }
+    }
+
+    .animated-waves::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: url('https://www.transparenttextures.com/patterns/connected.png'), linear-gradient(135deg, #f8f1e7 0%, #f8f1e7 100%);
+      animation: waveAnimation 10s ease-in-out infinite alternate;
+      background-size: cover;
+      opacity: 0.3;
+    }
+    @keyframes waveAnimation {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+    @keyframes pulseBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.1); }
+    }
+    .microphone-animate {
+      animation: pulseBounce 1.8s ease-in-out infinite;
+    }
+    .modal input:required:invalid {
+      border-color: red;
+    }
+  </style>
 </head>
-<body>
-<!-- Navigation Bar -->
-<nav class="navbar">
-  <div class="logo large-logo">
-    <img src="a.png" alt="SFA AI Logo">
-  </div>
-
-<!-- Hamburger Icon -->
-<div class="hamburger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+<body class="wallpaper-body text-gray-800 min-h-screen">
+<div id="tsparticles"></div>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 
 
+<!-- Modal -->
+<div id="demoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <div class="bg-black rounded-xl shadow-lg max-w-xl w-full">
+    <div class="bg-[#1cbfcf] p-8 rounded-xl text-black">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-white">Schedule Your Demo</h2>
+        <button onclick="toggleModal(false)" class="text-white text-2xl hover:text-gray-300">&times;</button>
+      </div>
 
-  <!-- Desktop nav links -->
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#solutions">Solutions</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+      <form id="demoForm" class="space-y-6">
 
-  <!-- Mobile nav links (initially hidden) -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#home" onclick="toggleMenu()">Home</a>
-    <a href="#services" onclick="toggleMenu()">Services</a>
-    <a href="#solutions" onclick="toggleMenu()">Solutions</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
-  </div>
-</nav>
-    <div class="mobile-overlay" id="mobileOverlay">
-  <div class="overlay-menu">
-    <a href="#home" onclick="toggleMenu()">Home</a>
-    <a href="#services" onclick="toggleMenu()">Services</a>
-    <a href="#solutions" onclick="toggleMenu()">Solutions</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
-  </div>
-</div>
-
-<!-- Modern Landing Section -->
-<header class="hero" id="home">
-
-    <div class="hero-content">
-        <p class="subtitle">SFA AI Studio</p>
-        <h1 class="headline">
-            <span style="color: #2585f8;">Empower</span> Your Systems<br />with Cutting-Edge AI Solutions
-        </h1>
-        <div class="hero-buttons-inline">
-            <a href="https://calendly.com/sfaaistudio/30min" class="btn primary">Let's Talk</a>
-            <a href="#services" class="btn secondary">Our Services </a>
+        <div>
+          <label class="block text-white font-semibold mb-1">First Name*</label>
+          <input type="text" name="firstName" placeholder="First name"
+                 class="w-full p-3 rounded-full text-black placeholder-gray-400" required>
         </div>
-    </div>
-    <div class="hero-image">
 
+        <div>
+          <label class="block text-white font-semibold mb-1">Last Name*</label>
+          <input type="text" name="lastName" placeholder="Last name"
+                 class="w-full p-3 rounded-full text-black placeholder-gray-400" required>
+        </div>
+
+        <div class="flex space-x-4">
+          <div class="w-1/2">
+            <label class="block text-white font-semibold mb-1">Email*</label>
+            <input type="email" name="email" placeholder="email@domain.com"
+                   class="w-full p-3 rounded-full text-black placeholder-gray-400" required>
+          </div>
+          <div class="w-1/2">
+            <label class="block text-white font-semibold mb-1">Phone Number*</label>
+            <input type="tel" name="phone" placeholder="Phone number"
+                   class="w-full p-3 rounded-full text-black placeholder-gray-400" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-white font-semibold mb-1">Tell us about your needs</label>
+          <textarea name="message" placeholder="How can we help?" rows="4"
+                    class="w-full p-3 rounded-xl text-black placeholder-gray-400 resize-none" required></textarea>
+        </div>
+
+        <div class="flex items-start space-x-2 text-sm text-white">
+          <input type="checkbox" required class="mt-1">
+          <p>I consent to receive TableTalk AI information and promotional material via phone, email, and SMS.</p>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-orange-500 text-white py-3 rounded-full font-semibold hover:bg-orange-600 transition">
+          Submit
+        </button>
+
+      </form>
     </div>
+  </div>
+</div>
+
+<!-- Header -->
+
+<header class="flex justify-between items-center px-8 py-6">
+  <div class="text-2xl font-bold" style="color: #1E2D3A;">TableTalk</div>
+  <div>
+    <button onclick="toggleModal(true)" style="border: 2px solid #1e2d3a; color: #1e2d3a;" class="px-4 py-2 rounded-full font-semibold hover:bg-[#F97316] hover:text-white transition">
+      Request Demo
+    </button> </div>
 </header>
 
 
 
-<!-- SERVICES -->
-<section class="section services-modern red-section" id="services">
-    <div class="services-header">
-        <h2 >OUR <span> </span> SERVICES</h2>
-        <p>We build tailored AI solutions to elevate your operations – from automation to intelligent consulting.</p>
-    </div>
-    <div class="services-cards">
-        <div class="service-modern light">
-            <h3>AI VOICE AGENTS</h3>
-            <div class="tags">
-                <span>Automate Your Incoming & Outgoing Calls</span>
-                <span>Advanced Call Automations</span>
-                <span>Human-Like Voice Quality</span>
-                <span>24/7 Operation</span>
-                <span>Monthly Development Meetings</span>
-                <span>Custom-Built for Your Business</span>
-                <span>Powered by the Latest AI Models</span>
-            </div>
-        </div>
-        <div class="service-modern dark">
-            <h3>
-                AI CHAT AGENTS
-                </h3>
-            <div class="tags">
-                <span>Elevate Customer Support Across Messaging Platforms</span>
-                <span>Tailored to Your Business Needs</span>
-                <span>Multi-Channel Support</span>
-                <span>Always Available – 24/7</span>
-                <span>Seamless Integrations with Your Apps</span>
-                <span>Natural, Human-Like Conversations</span>
-                <span>Powered by the Latest AI Models</span>
-            </div>
-        </div>
-        <div class="service-modern green">
-            <h3>CUSTOM SOLUTIONS</h3>
-            <div class="tags">
-                <span>Tailored AI Systems for Your Unique Needs</span>
-                <span>Powered by Cutting-Edge AI Technology</span>
-                <span>Scalable & Future-Proof Architecture</span>
-                <span>Smooth API & System Integrations</span>
-                <span>Industry-Specific Custom Development</span>
-                <span>End-to-End Intelligent Automation</span>
-                <span>AI-Powered Workflow Optimization</span>
-
-            </div>
-        </div>
-    </div>
-</section>
-<!-- SOLUTION -->
-<section class="section services-modern red-section" id="solutions">
-    <div class="services-header">
-        <h2>INDUSTRY-SPECIFIC IMPLEMENTATIONS</h2>
-        <p>Explore our suite of AI-powered tools designed for hospitality, operations, and guest interaction excellence.</p>
-    </div>
-    <div class="services-cards">
-        <div class="service-modern light">
-            <h3>AI HOST</h3>
-            <div class="tags">
-                <span>Reservation Calls</span>
-                <span>Menu & Info Sharing</span>
-                <span>Table Bookings</span>
-                <span>Waitlist Management</span>
-                <span>Multi-Channel Support</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-         <div class="service-modern dark">
-            <h3>AI CHECK-IN</h3>
-            <div class="tags">
-                <span>Seamless Arrival</span>
-                <span>ID & Reservation Match</span>
-                <span>Keyless Entry</span>
-                <span>Multi-language Support</span>
-                <span>Faster Turnaround</span>
-            </div>
-        </div>
-        <div class="service-modern green">
-            <h3>AI ROOM SERVICE</h3>
-            <div class="tags">
-                <span>Voice or Text Orders</span>
-                <span>Smart Menu Suggestions</span>
-                <span>Instant Confirmation</span>
-                <span>Task Routing</span>
-                <span>Polite & Personalized</span>
-            </div>
-        </div>
-        <div class="service-modern light">
-            <h3>AI CONCIERGE</h3>
-            <div class="tags">
-                <span>Guest Guidance</span>
-                <span>Amenities Info</span>
-                <span>Phone & Messaging</span>
-                <span>Human-Like Tone</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern dark">
-            <h3>AI PHONE RECEPTIONIST</h3>
-            <div class="tags">
-                <span>Call Routing</span>
-                <span>Custom Greetings</span>
-                <span>Voice Messaging</span>
-                <span>FAQs</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern green">
-            <h3>AI COMPANION</h3>
-            <div class="tags">
-                <span>Staff Onboarding</span>
-                <span>HR Policy Answers</span>
-                <span>Department Training</span>
-                <span>Live Content Updates</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-        <div class="service-modern light">
-            <h3>SMMA AI</h3>
-            <div class="tags">
-                <span>Instagram & Google</span>
-                <span>DM Replies</span>
-                <span>Analytics Tracking</span>
-                <span>AI Content Ideas</span>
-                <span>Available 24/7</span>
-            </div>
-        </div>
-    </div>
+<!-- Hero Section -->
+<section class="landing-wallpaper text-center px-6 py-24 h-[calc(100vh-100px)] flex flex-col justify-center">
+  <h1 class="text-4xl font-bold mb-4"style="color: #000305;">Seamless Conversations, Intelligent Service</h1>
+  <p class="text-xl text-gray-600 mb-10"style="color: #000305;">Designed for Modern Hospitality, Delivered by TableTalk AI</p>
 </section>
 
-<!-- CONTACT -->
-<section class="section contact" id="contact">
-    <h2>Let's Build Your AI-Powered Future</h2>
 
-    <a href="https://calendly.com/sfaaistudio/30min" class="btn primary">Schedule a Call</a>
-    <p></p>
-    <div style="height: 40px;"></div>
-    <p></p>
+<!-- How It Works -->
 
-
-
+<section id="guest-experience" class="pt-24 pb-24 px-6 text-center">
+  <h2 class="text-3xl font-bold mb-16"style="color: #000305;" >A Fully Handled Guest Experience</h2>
+  <div class="flex flex-col md:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
+    <div class="flex flex-col items-center text-center max-w-xs">
+      <div class="bg-[#1e2d3a]-100 rounded-full w-24 h-24 flex items-center justify-center mb-4">
+        <img src="https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" alt="Phone icon" class="w-10 h-10" />
+      </div>
+      <h3 class="text-xl font-semibold mb-2"style="color: #000305;">Guest Dials</h3>
+      <p class="text-gray-600"style="color: #000305;">TableTalk responds with poise and professionalism.</p>
+    </div>
+    <div class="flex flex-col items-center text-center max-w-xs">
+      <div class="bg-[#1e2d3a]-100 rounded-full w-24 h-24 flex items-center justify-center mb-4">
+        <img src="https://unpkg.com/lucide-static@0.321.0/icons/brain.svg" alt="Brain icon" class="w-10 h-10" />
+      </div>
+      <h3 class="text-xl font-semibold mb-2"style="color: #000305;">Understands Intent</h3>
+      <p class="text-gray-600"style="color: #000305;">Reservations, questions, or updates are smoothly recognized.</p>
+    </div>
+    <div class="flex flex-col items-center text-center max-w-xs">
+      <div class="bg-[#1e2d3a]-100 rounded-full w-24 h-24 flex items-center justify-center mb-4">
+        <img src="https://unpkg.com/lucide-static@0.321.0/icons/check-circle.svg" alt="Check icon" class="w-10 h-10" />
+      </div>
+      <h3 class="text-xl font-semibold mb-2"style="color: #000305;">Takes Action</h3>
+      <p class="text-gray-600"style="color: #000305;">Confirms bookings, sends messages, and notifies your team.</p>
+    </div>
+  </div>
 </section>
 
 
 
-<!-- FOOTER -->
-<footer class="footer-modern">
-    <div class="footer-content">
-        <div class="footer-left">
-            <img src="a.png" alt="SFA AI Logo" class="footer-logo" />
-        </div>
-        <div class="footer-center">
-            <p><strong>📍 Address</strong></p>
-            <p>New York, USA &nbsp;&nbsp;|&nbsp;&nbsp; Istanbul, TR</p>
-        </div>
-        <div class="footer-right">
-            <p> <a href="mailto:info@sfaai.co">info@sfaai.co</a> </p>
 
-        </div>
+<!-- Tailored Elegance -->
+<section class="py-24 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6"style="color: #000305;">Tailored Elegance, Powered by AI</h2>
+    <p class="text-lg text-gray-600 mb-12 "style="color: #000305;" >Everything your restaurant needs to speak fluently with every guest – automatically, intelligently, and beautifully</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #f8f1e7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">Multilingual Finesse</h3>
+        <p class="text-gray-700"style="color: #000305;">Human-like conversation in any language your guests speak</p>
+      </div>
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #F8F1E7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">24/7 Scheduling</h3>
+        <p class="text-gray-700"style="color: #000305;">Reservations handled around the clock — even while you sleep</p>
+      </div>
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #F8F1E7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">Brand Trained</h3>
+        <p class="text-gray-700"style="color: #000305;">Knows your menu, service style, and guest expectations</p>
+      </div>
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #F8F1E7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">Guest Insights</h3>
+        <p class="text-gray-700"style="color: #000305;">Access full transcripts and booking analytics anytime.</p>
+      </div>
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #F8F1E7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">Instant Notifications to Your Team</h3>
+        <p class="text-gray-700"style="color: #000305;">Stay in control with real-time updates on every guest interaction</p>
+      </div>
+      <div class="rounded-xl shadow-md p-6 text-left" style="background-color: #F8F1E7;">
+        <h3 class="text-lg font-semibold mb-2"style="color: #000305;">Real-Time CRM Integration</h3>
+        <p class="text-gray-700"style="color: #000305;">Syncs with your tools to check availability and log bookings instantly</p>
+      </div>
+
     </div>
+  </div>
+</section>
+<!-- Integration Section -->
+<section class="gradient-bg py-20 text-center px-6">
+  <h2 class="text-3xl font-bold mb-4" style="color: #000305">Integrate Seamlessly With Your Favorite Tools</h2>
+  <p class="text-gray-700 max-w-2xl mx-auto mb-10" style="color: #000305">
+    TableTalk works beautifully with your CRM, POS, and communication platforms — no need to change your existing stack.
+  </p>
+
+  <div class="overflow-hidden relative">
+    <div class="flex space-x-8 w-max px-4 animate-marquee">
+      <!-- Logo set duplicated twice for seamless infinite scroll -->
+      <template id="logo-row">
+        <img src="logos/twilio.svg" alt="Twilio" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/clover.svg" alt="Clover" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/hubspot.png" alt="Hubspot" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/monday.svg" alt="Monday" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/opentable.png" alt="OpenTable" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/oracle.png" alt="Oracle" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/resy.png" alt="Resy" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/rezervem.jpeg" alt="Rezervem" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/sevenrooms.jpeg" alt="SevenRooms" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/simpra.png" alt="Simpra" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/spoton.png" alt="Spoton" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/square.svg" alt="Square" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/toast.svg" alt="Toast" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/telegram.svg" alt="Telegram" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/gmail.svg" alt="Gmail" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+        <img src="logos/whatsapp.png" alt="Whatsapp" class="h-16 bg-[#F8F1E7FF] rounded-xl p-2" />
+      </template>
+      <div class="flex space-x-8" id="marquee-track"></div>
+      <div class="flex space-x-8" id="marquee-track-clone"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+</style>
+
+<script>
+  const logoRow = document.getElementById('logo-row').content;
+  const track = document.getElementById('marquee-track');
+  const clone = document.getElementById('marquee-track-clone');
+  for (let i = 0; i < 2; i++) {
+    const clone1 = document.importNode(logoRow, true);
+    const clone2 = document.importNode(logoRow, true);
+    track.appendChild(clone1);
+    clone.appendChild(clone2);
+  }
+</script>
+
+
+<style>
+  @keyframes slide {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-slide {
+    animation: slide 25s linear infinite;
+  }
+</style>
+
+<style>
+  @keyframes slide {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-slide {
+    animation: slide 20s linear infinite;
+  }
+</style>
+
+<!-- Final CTA -->
+<section class="py-24 px-6 text-center">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-4xl font-bold mb-6" style="color: #000305">Ready to Transform Guest Experience?</h2>
+    <p class="text-lg text-gray-700 mb-8" style="color: #000305">Let TableTalk AI handle the conversations, so your team can focus on hospitality. Start with a private demo and experience the difference.</p>
+    <button
+            onclick="toggleModal(true)"
+            style="border: 2px solid #1e2d3a; background-color: #1e2d3a; color: #f6f7f8;"
+            class="px-4 py-2 rounded-full font-semibold hover:opacity-90 transition">
+      Request Demo
+    </button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg[#F8F1E7] text-gray-600 text-sm text-center py-6">
+  <p>&copy; 2025 TableTalk AI powered by SFA AI Studio All rights reserved</p>
+  <div class="mt-2 space-x-4">
+    <a href="/privacy-policy.html" class="hover:underline">Privacy Policy</a>
+    <a href="/terms.html" class="hover:underline">Terms of Service</a>
+    <a href="mailto:info@sfaai.co" class="hover:underline">Contact Us</a>
+  </div>
 </footer>
- 
-   
-    <script>
-  function toggleMenu() {
-    const mobileNav = document.getElementById("mobileNav");
-    mobileNav.classList.toggle("show");
+
+<!-- Modal Script -->
+<script>
+  function toggleModal(show) {
+    const modal = document.getElementById('demoModal');
+    modal.classList.toggle('hidden', !show);
+    modal.classList.toggle('flex', show);
+  }
+  function validateForm(form) {
+    const fields = form.querySelectorAll('[required]');
+    for (let field of fields) {
+      if (!field.value.trim()) {
+        field.focus();
+        return false;
+      }
+    }
+    document.getElementById('formSuccessMessage').classList.remove('hidden');
+
+    // Optionally hide modal after a delay
+    setTimeout(() => {
+      toggleModal(false);
+      form.reset();
+      document.getElementById('formSuccessMessage').classList.add('hidden');
+    }, 3000);
+
+    return false; // Prevent default form submission
   }
 </script>
-    <script>
-  function toggleMenu() {
-    const overlay = document.getElementById("mobileOverlay");
-    overlay.classList.toggle("show");
-  }
+<script>
+  var vapiInstance = null;
+  const assistant = "e00c3cc6-632b-404a-9346-84d196194bc5"; // Your Assistant ID
+  const apiKey = "2b63bf4a-4c39-4d96-90f9-f03f055dd869";  // Your Public API Key
+  const isMobile = window.innerWidth < 768; // simple check for mobile
+
+  const buttonConfig = {
+    showButton: true,
+    position: "top",
+    offset: isMobile ? "500px" : "350px",  // 👈 lower mic on mobile
+    width: "80px",
+    height: "80px",
+    customStyle: {
+      position: "relative",
+      margin: "0 auto",
+      display: "block"
+    },
+    idle: {
+      color: "rgb(176,185,192)",
+      type: "round",
+      icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
+    },
+    loading: {
+      color: "rgb(255, 165, 0)",
+      type: "round",
+      icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
+    },
+    active: {
+      color: "rgb(255,0,0)",
+      type: "round",
+      icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic-off.svg"
+    }
+  };
+
+  (function (d, t) {
+    var g = document.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+
+    g.onload = function () {
+      vapiInstance = window.vapiSDK.run({
+        apiKey: apiKey,
+        assistant: assistant,
+        config: buttonConfig,
+      });
+
+      // 👇 Add click listener to microphone button
+      const micBtn = document.getElementById('mic-button');
+      if (micBtn) {
+        micBtn.addEventListener('click', function () {
+          if (vapiInstance) {
+            vapiInstance.start(); // Starts the assistant when mic is clicked
+          }
+        });
+      }
+    };
+  })(document, "script");
 </script>
+<script>
+  document.getElementById('demoForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      firstName: form.firstName.value.trim(),
+      lastName: form.lastName.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim()
+    };
+
+    // 🔗 Replace this URL with your real n8n Webhook URL
+    const webhookUrl = 'https://alickaraman.app.n8n.cloud/webhook/tableTalk';
+
+    try {
+      const res = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        // alert('Thank you! Your demo request has been submitted.');
+        toggleModal(false);
+      } else {
+        alert('Something went wrong. Please try again later.');
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      alert('Error submitting form.');
+    }
+  });
+  <img src="../../wallpaper.png" height="1024" width="1536"/></script>
+
 
 </body>
 </html>
