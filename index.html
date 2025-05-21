@@ -481,6 +481,43 @@
         modal.classList.toggle('flex', show);
     }
 </script>
+<script>
+    document.getElementById('demoForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const data = {
+            firstName: form.firstName.value.trim(),
+            lastName: form.lastName.value.trim(),
+            phone: form.phone.value.trim(),
+            email: form.email.value.trim(),
+            message: form.message.value.trim()
+        };
+
+        // 🔗 Replace this URL with your real n8n Webhook URL
+        const webhookUrl = 'https://alickaraman.app.n8n.cloud/webhook/tableTalk';
+
+        try {
+            const res = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                // alert('Thank you! Your demo request has been submitted.');
+                toggleModal(false);
+            } else {
+                alert('Something went wrong. Please try again later.');
+            }
+        } catch (err) {
+            console.error('Error submitting form:', err);
+            alert('Error submitting form.');
+        }
+    });
+    </script>
 
 
 </body>
